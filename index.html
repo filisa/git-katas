@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f3eb">
+    <title>Git Katas — your learning path</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Git Katas home">
+          <span class="brand-mark" aria-hidden="true">g<span>·</span></span>
+          <span>git katas<span class="brand-subtitle">A little practice goes a long way.</span></span>
+        </a>
+        <div class="overall-progress" aria-live="polite">
+          <div class="overall-progress-copy">
+            <span class="eyebrow">YOUR LEARNING PATH</span>
+            <span id="overall-count">Loading your katas…</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="Learning path progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <span id="overall-progress-fill"></span>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar" aria-label="Kata learning path">
+          <div class="sidebar-heading">
+            <span class="eyebrow">THE ROAD AHEAD</span>
+            <span id="path-count" class="path-count"></span>
+          </div>
+          <nav id="kata-nav" class="kata-nav"></nav>
+          <p class="sidebar-note">No rush. Every checked step is progress.</p>
+        </aside>
+
+        <main id="main-content" class="main-content" tabindex="-1">
+          <div class="loading-state" role="status">
+            <span class="loading-mark" aria-hidden="true">g</span>
+            <p>Getting your learning path ready…</p>
+          </div>
+        </main>
+      </div>
+      <div id="status-message" class="sr-only" aria-live="polite"></div>
+    </div>
+  </body>
+</html>

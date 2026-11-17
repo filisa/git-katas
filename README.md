@@ -57,6 +57,18 @@ everything you need to be able to use Git effectively in your day to day life.
 
 See [Overview.md](Overview.md) for a more complete list and suggested order.
 
+## Interactive Learning Path
+
+You can work through the suggested path as an interactive website. From the repository root, run:
+
+```shell
+python3 -m http.server
+```
+
+Then open [http://localhost:8000](http://localhost:8000). Check off tasks as you complete them; progress is saved in this browser.
+
+To publish the website with GitHub Pages, set the repository's Pages source to **GitHub Actions** in **Settings → Pages**, then push to `master`. The deployment workflow will publish the site and show its URL in the workflow run.
+
 ## Contributing
 
 If you miss exercises or find errors in any of them, feel free to improve them and make a pull request.
