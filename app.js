@@ -247,6 +247,26 @@ function updateCompletion(kata, taskCount, completedTasks) {
   if (count) count.textContent = `${completedTasks} / ${taskCount} checked`;
 }
 
+function renderWelcome() {
+  elements.main.innerHTML =
+    `<section class="welcome">` +
+    `<div class="kata-kicker">Before you begin</div>` +
+    `<h1 class="kata-title">A few steps, then you’re off.</h1>` +
+    `<p class="kata-description">Each kata is a hands-on Git exercise. Set up the repository once, then enter the folder for the kata you want to practice.</p>` +
+    `<div class="welcome-card">` +
+    `<h2>How to get started</h2>` +
+    `<ol class="welcome-steps">` +
+    `<li><span class="step-number">01</span><span><strong>Clone the repository</strong><code>git clone https://github.com/eficode-academy/git-katas.git</code></span></li>` +
+    `<li><span class="step-number">02</span><span><strong>Open the repository folder</strong><code>cd git-katas</code></span></li>` +
+    `<li><span class="step-number">03</span><span><strong>Choose a kata and enter its folder</strong>Every exercise shows its folder and the exact <code>cd</code> command. For example: <code>cd basic-commits</code></span></li>` +
+    `<li><span class="step-number">04</span><span><strong>Prepare the exercise</strong>Inside the kata folder, follow its setup instructions, then work through the tasks here.</span></li>` +
+    `</ol>` +
+    `<div class="welcome-note">The katas change your local practice repository, not the website. Your checklist progress is saved in this browser.</div>` +
+    `<button class="nav-button next start-button" type="button">Start with Basic Commits <span aria-hidden="true">→</span></button>` +
+    `</div></section>`;
+  elements.main.querySelector(".start-button").addEventListener("click", () => openKata(0));
+}
+
 async function openKata(index) {
   if (index < 0 || index >= katas.length) return;
   currentIndex = index;
@@ -278,6 +298,10 @@ async function openKata(index) {
       `<div class="kata-kicker">Kata ${String(currentIndex + 1).padStart(2, "0")} of ${String(katas.length).padStart(2, "0")}</div>` +
       `<h1 class="kata-title">${escapeHtml(heading?.[1] || kata.title)}</h1>` +
       `<p class="kata-description">${escapeHtml(description.replace(/^#+\s*/, ""))}</p>` +
+      `<div class="exercise-folder" aria-label="Exercise folder and command">` +
+      `<div><span class="folder-label">EXERCISE FOLDER</span><code>${escapeHtml(kata.directory)}/</code></div>` +
+      `<div><span class="folder-label">FROM THE REPOSITORY ROOT</span><code>cd ${escapeHtml(kata.directory)}</code></div>` +
+      `</div>` +
       `</div>` +
       `<section class="content-card" aria-label="Kata instructions">` +
       `<div class="card-topline"><h2>Your practice</h2><span class="task-count">${completeCount} / ${taskCount} checked</span></div>` +
@@ -321,7 +345,7 @@ async function start() {
     katas = readLearningPath(await response.text());
     updateOverallProgress();
     renderNavigation();
-    await openKata(0);
+    renderWelcome();
   } catch (error) {
     console.error("Could not load the Git Katas learning path.", error);
     elements.main.innerHTML =
