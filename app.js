@@ -8,11 +8,34 @@ const elements = {
   overallFill: document.querySelector("#overall-progress-fill"),
   pathCount: document.querySelector("#path-count"),
   status: document.querySelector("#status-message"),
+  themeToggle: document.querySelector("#theme-toggle"),
 };
 
 let katas = [];
 let currentIndex = 0;
 let savedProgress = loadProgress();
+
+function updateThemeButton() {
+  const isDark = document.documentElement.dataset.theme === "dark";
+  elements.themeToggle.setAttribute("aria-pressed", String(isDark));
+  elements.themeToggle.setAttribute("aria-label", `Switch to ${isDark ? "light" : "dark"} mode`);
+  elements.themeToggle.querySelector(".theme-toggle-icon").textContent = isDark ? "☀" : "☾";
+  elements.themeToggle.querySelector(".theme-toggle-label").textContent =
+    isDark ? "Light mode" : "Dark mode";
+  document.querySelector('meta[name="theme-color"]').content = isDark ? "#141a17" : "#f6f3eb";
+}
+
+function toggleTheme() {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = nextTheme;
+  updateThemeButton();
+  try {
+    localStorage.setItem("git-katas-theme", nextTheme);
+  } catch (error) {
+    console.warn("Could not save the color theme preference.", error);
+    announce("The theme changed, but this browser could not save your preference.");
+  }
+}
 
 function loadProgress() {
   try {
@@ -339,6 +362,8 @@ async function openKata(index) {
 }
 
 async function start() {
+  updateThemeButton();
+  elements.themeToggle.addEventListener("click", toggleTheme);
   try {
     const response = await fetch("./README.md");
     if (!response.ok) throw new Error(`README.md returned ${response.status}.`);

@@ -65,7 +65,7 @@ You can work through the suggested path as an interactive website. From the repo
 python3 -m http.server
 ```
 
-Then open [http://localhost:8000](http://localhost:8000). The site starts with setup instructions, shows the repository folder and `cd` command for each kata, and lets you check off tasks as you complete them. Progress is saved in this browser.
+Then open [http://localhost:8000](http://localhost:8000). The site starts with setup instructions, shows the repository folder and `cd` command for each kata, and lets you check off tasks as you complete them. Progress and your light/dark theme preference are saved in this browser; the initial theme follows your device setting.
 
 To publish the website with GitHub Pages, set the repository's Pages source to **GitHub Actions** in **Settings → Pages**, then push to `master`. If Pages was enabled after a failed run, rerun that workflow from **Actions**. A successful run shows the published URL.
 

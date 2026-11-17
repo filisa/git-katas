@@ -105,6 +105,38 @@ input:focus-visible {
   width: min(320px, 38vw);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  min-height: 38px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 6px 11px;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--green);
+  background: var(--green-soft);
+}
+
+.theme-toggle-icon {
+  color: var(--green);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.theme-toggle-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .overall-progress-copy {
   display: flex;
   justify-content: space-between;
@@ -664,6 +696,7 @@ input:focus-visible {
 
 @media (max-width: 760px) {
   .topbar {
+    flex-wrap: wrap;
     min-height: 74px;
     padding-inline: 18px;
   }
@@ -674,7 +707,7 @@ input:focus-visible {
   }
 
   .overall-progress {
-    width: min(210px, 48vw);
+    width: min(210px, 42vw);
   }
 
   .overall-progress-copy {
@@ -747,6 +780,15 @@ input:focus-visible {
     border-radius: 11px;
   }
 
+  .theme-toggle {
+    min-height: 34px;
+    padding: 5px 8px;
+  }
+
+  .theme-toggle-label {
+    font-size: 11px;
+  }
+
   .overall-progress-copy {
     font-size: 10px;
   }
@@ -802,4 +844,120 @@ input:focus-visible {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #141a17;
+  --white: #1d2520;
+  --ink: #edf2e8;
+  --muted: #a0aa9c;
+  --line: #343d36;
+  --green: #78bd91;
+  --green-dark: #a1d5af;
+  --green-soft: #263a2d;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(ellipse at 86% 12%, rgb(64 83 66 / 20%), transparent 29rem),
+    var(--paper);
+}
+
+html[data-theme="dark"] .topbar {
+  background: rgb(25 32 28 / 94%);
+}
+
+html[data-theme="dark"] .progress-track {
+  background: #343d36;
+}
+
+html[data-theme="dark"] .kata-link {
+  color: #c1cabe;
+}
+
+html[data-theme="dark"] .kata-link:hover,
+html[data-theme="dark"] .kata-link[aria-current="step"] {
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .kata-link:hover {
+  background: rgb(255 255 255 / 5%);
+}
+
+html[data-theme="dark"] .kata-number,
+html[data-theme="dark"] .task-index {
+  color: #9da99c;
+}
+
+html[data-theme="dark"] .kata-description,
+html[data-theme="dark"] .kata-document p,
+html[data-theme="dark"] .kata-document ul,
+html[data-theme="dark"] .kata-document ol {
+  color: #bec8bc;
+}
+
+html[data-theme="dark"] .welcome-card,
+html[data-theme="dark"] .content-card {
+  border-color: #343d36;
+}
+
+html[data-theme="dark"] .welcome-steps code,
+html[data-theme="dark"] .exercise-folder code,
+html[data-theme="dark"] .kata-document code,
+html[data-theme="dark"] .error-state code {
+  background: #2b352e;
+  color: #b6dfbc;
+}
+
+html[data-theme="dark"] .kata-document pre,
+html[data-theme="dark"] .kata-document pre code {
+  background: #111713;
+}
+
+html[data-theme="dark"] .task-row {
+  color: #d3dbd0;
+}
+
+html[data-theme="dark"] .task-row:hover {
+  border-color: #343d36;
+  background: #222b25;
+}
+
+html[data-theme="dark"] .task-row:has(input:checked) .task-copy {
+  color: #9eaa9d;
+  text-decoration-color: #58675a;
+}
+
+html[data-theme="dark"] .completion-banner {
+  border-color: #3b5942;
+  background: #202f24;
+}
+
+html[data-theme="dark"] .completion-banner p {
+  color: #b1c8b1;
+}
+
+html[data-theme="dark"] .nav-button {
+  border-color: #414c43;
+  background: #222b25;
+  color: var(--ink);
+}
+
+html[data-theme="dark"] .nav-button:hover:not(:disabled) {
+  background: #2b382e;
+}
+
+html[data-theme="dark"] .nav-button.next {
+  border-color: #4a8960;
+  background: #356447;
+  color: white;
+}
+
+html[data-theme="dark"] .nav-button.next:hover:not(:disabled) {
+  background: #427955;
+}
+
+html[data-theme="dark"] .nav-button:disabled {
+  color: #747e74;
 }
